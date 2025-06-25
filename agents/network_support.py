@@ -1,10 +1,15 @@
 from typing import Any, Dict
 from .base import BaseAgent
+from .system_prompts import SYSTEM_PROMPTS
 
 class NetworkSupportAgent(BaseAgent):
     """
     Agent for network and connectivity issues.
     """
+    def __init__(self, *a, **kw):
+        super().__init__(*a, **kw)
+        self.system_prompt = SYSTEM_PROMPTS["network_support_agent"]
+
     async def receive_message(self, message: Any):
         ticket = message.payload.data.get("ticket")
         if not ticket:

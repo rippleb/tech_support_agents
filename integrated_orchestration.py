@@ -9,7 +9,7 @@ from agents.network_support import NetworkSupportAgent
 from agents.security import SecurityAgent
 from agents.escalation_manager import EscalationManagerAgent
 from utils.mcp import MCPClient
-from utils.logging import AuditLogger
+from utils.audit_logging import AuditLogger
 
 # --- 1. Setup registry, session manager, policy client ---
 registry = A2ARegistry()

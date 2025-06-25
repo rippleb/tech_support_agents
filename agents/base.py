@@ -3,7 +3,7 @@ from agent_auth.credentials import CredentialStore, CredentialType
 from a2a_collaboration.communication import A2ACommunicationBus
 from utils.mcp import MCPClient
 from utils.policy import OPAPolicyClient
-from utils.logging import AuditLogger
+from utils.audit_logging import AuditLogger
 from a2a_collaboration.models import A2AAgent, A2ACapabilities, CollaborationMetadata
 from a2a_collaboration.registry import A2ARegistry
 from .llm import LLMClient, LLMConfig, LLMProvider
@@ -127,7 +127,7 @@ class BaseAgent:
         # Add agent context to system prompt
         agent_context = f"You are agent {self.agent_id} in an IT helpdesk system."
         if self.system_prompt:
-            full_system_prompt = f"{agent_context}\n\n{system_prompt}"
+            full_system_prompt = f"{agent_context}\n\n{self.system_prompt}"
         else:
             full_system_prompt = agent_context
         

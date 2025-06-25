@@ -1,10 +1,15 @@
 from typing import Any, Dict
 from .base import BaseAgent
+from .system_prompts import SYSTEM_PROMPTS
 
 class SecurityAgent(BaseAgent):
     """
     Agent for security incidents and compliance.
     """
+    def __init__(self, *a, **kw):
+        super().__init__(*a, **kw)
+        self.system_prompt = SYSTEM_PROMPTS["security_agent"]
+
     async def receive_message(self, message: Any):
         ticket = message.payload.data.get("ticket")
         if not ticket:

@@ -201,3 +201,77 @@ tickets = [
     "tags": ["conference-room", "video", "booking"]
   }
 ]
+agents = [
+  {
+    "name": "Triage Agent",
+    "email": "triage@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": True,
+    "signature": "Best regards,\nTriage Team"
+  },
+  {
+    "name": "Technical Support Agent",
+    "email": "techsupport@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": False,
+    "signature": "Best regards,\nTechnical Support Team"
+  },
+  {
+    "name": "Network Support Agent",
+    "email": "networksupport@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": False,
+    "signature": "Best regards,\nNetwork Support Team"
+  },
+  {
+    "name": "Security Agent",
+    "email": "security@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": True,
+    "signature": "Best regards,\nSecurity Team"
+  },
+  {
+    "name": "Escalation Manager",
+    "email": "escalations@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": True,
+    "signature": "Best regards,\nEscalation Management"
+  },
+  {
+    "name": "Knowledge Base Agent",
+    "email": "knowledgebase@company.com",
+    "ticket_scope": 3,
+    "occasional": False,
+    "role_ids": [],
+    "group_ids": [],
+    "skill_ids": [],
+    "agent_type": 1,
+    "focus_mode": False,
+    "signature": "Best regards,\nKnowledge Base Team"
+  }
+]
