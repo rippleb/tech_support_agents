@@ -1,10 +1,15 @@
 from typing import Any, Dict
 from .base import BaseAgent
+from .system_prompts import SYSTEM_PROMPTS
 
 class TriageAgent(BaseAgent):
     """
     Agent responsible for initial ticket triage: analyzes, categorizes, and assigns tickets.
     """
+    def __init__(self, *a, **kw):
+        super().__init__(*a, **kw)
+        self.system_prompt = SYSTEM_PROMPTS["triage_agent"]
+
     async def receive_message(self, message: Any):
         """Handle incoming ticket: analyze, categorize, and assign."""
         ticket = message.payload.data.get("ticket")
