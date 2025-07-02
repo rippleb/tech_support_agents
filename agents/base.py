@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 from agent_auth.credentials import CredentialStore, CredentialType
 from a2a_collaboration.communication import A2ACommunicationBus
 from utils.mcp import MCPClient
@@ -21,6 +21,7 @@ class BaseAgent:
         communication_bus: A2ACommunicationBus,
         mcp_client: MCPClient,
         policy_client: OPAPolicyClient,
+        llm_config: LLMConfig,
         # policy_client: PolicyClient,
         secret: str,
         audit_logger: AuditLogger,
@@ -31,6 +32,8 @@ class BaseAgent:
         self.communication_bus = communication_bus
         self.mcp_client = mcp_client
         self.policy_client = policy_client
+        self.llm_config = llm_config
+        self.llm_client = LLMClient(self.llm_config)
         # self.policy_client = policy_client
         self.secret = secret
         self.jwt_token: Optional[str] = None
@@ -124,16 +127,9 @@ class BaseAgent:
         if override_config:
             client = LLMClient(override_config)
         
-        # Add agent context to system prompt
-        agent_context = f"You are agent {self.agent_id} in an IT helpdesk system."
-        if self.system_prompt:
-            full_system_prompt = f"{agent_context}\n\n{self.system_prompt}"
-        else:
-            full_system_prompt = agent_context
-        
         try:
             # Generate response
-            response = await client.generate(prompt, full_system_prompt)
+            response = await client.generate(prompt, self.system_prompt)
             
             # Log the LLM call for audit purposes
             await self.audit_logger.log_audit_event(
@@ -145,7 +141,7 @@ class BaseAgent:
                     "model": (override_config or self.llm_config).model,
                     "prompt_length": len(prompt),
                     "response_length": len(response),
-                    "has_system_prompt": bool(system_prompt)
+                    "has_system_prompt": bool(self.system_prompt)
                 }
             )
             
